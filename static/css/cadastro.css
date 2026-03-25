@@ -1,0 +1,189 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== BIBLIOTECA (Design System) ===== */
+:root {
+  /* Cores */
+  --primary-color: #6C63FF;
+  --primary-hover: #574fd6;
+  --background-color: #F4F6F9;
+  --card-bg: #FFFFFF;
+  --text-main: #2D3748;
+  --text-muted: #718096;
+  --border-color: #E2E8F0;
+  --icon-color: #A0AEC0;
+
+  /* Tipografia */
+  --font-main: 'Poppins', sans-serif;
+}
+
+/* ===== BASE ===== */
+body {
+  font-family: var(--font-main);
+  background: var(--background-color);
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+/* ===== LAYOUT ===== */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px; /* Aumentado para afastar mais os cards */
+  width: 100%;
+  max-width: 1100px; /* Mais espaço horizontal geral */
+  justify-content: center;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 50px; /* Mais respiro interno */
+  border-radius: 16px; /* Bordas mais suaves */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04); /* Sombra mais limpa */
+  flex: 1;
+  min-width: 400px; /* Evita que o card fique espremido */
+}
+
+/* ===== TIPOGRAFIA (Hierarquia Visual) ===== */
+h1 {
+  color: var(--text-main);
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+/* ===== INPUTS & ÍCONES ===== */
+.input-group {
+  margin-bottom: 24px; /* Mais espaço entre os campos */
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper i {
+  position: absolute;
+  left: 16px;
+  font-size: 16px;
+  color: var(--icon-color);
+  transition: 0.3s;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 14px 14px 45px; /* Inputs mais altos e confortáveis */
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  font-family: var(--font-main);
+  font-size: 15px;
+  color: var(--text-main);
+  transition: 0.3s;
+}
+
+.input-group input::placeholder {
+  color: #CBD5E0;
+}
+
+.input-group input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
+  outline: none;
+}
+
+.input-group input:focus + i,
+.input-wrapper:focus-within i {
+  color: var(--primary-color);
+}
+
+/* ===== BOTÕES ===== */
+.btn {
+  padding: 14px 24px; /* Botões mais robustos */
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: var(--font-main);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.btn-block {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+}
+
+.btn-secondary:hover {
+  background: var(--background-color);
+  color: var(--text-main);
+  border-color: var(--text-muted);
+}
+
+/* Container para botões lado a lado */
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.button-group .btn {
+  flex: 1; /* Faz os dois botões dividirem o espaço igualmente */
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 850px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .card {
+    width: 100%;
+    min-width: 100%; /* Ajusta para telas de celular */
+    padding: 40px 25px;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+}
