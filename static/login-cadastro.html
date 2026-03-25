@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acesso e Cadastro</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/login-cadastro.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-brand">
+      <i class="fa-solid fa-layer-group"></i> CityIssue
+    </div>
+    <ul class="nav-links">
+      <li><a href="home.html" class="active">Home</a></li>
+      <li><a href="#">Sobre</a></li>
+      <li><a href="#">Serviços</a></li>
+      <li><a href="#">Contato</a></li>
+    </ul>
+  </nav>
+
+  <main class="main-content">
+    <div class="container">
+
+      <div class="card">
+        <h1>Login</h1>
+        <p class="subtitle">Acesse sua conta</p>
+
+        <form id="formLogin">
+          <div class="input-group">
+            <label for="loginEmail">Email</label>
+            <div class="input-wrapper">
+              <i class="fa-regular fa-envelope"></i>
+              <input type="email" id="loginEmail" placeholder="Digite seu email" required>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="loginSenha">Senha</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" id="loginSenha" placeholder="Digite sua senha" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h1>Criar Conta</h1>
+        <p class="subtitle">Preencha os dados abaixo</p>
+
+        <form id="formCadastro">
+          <div class="input-group">
+            <label for="cadNome">Nome completo</label>
+            <div class="input-wrapper">
+              <i class="fa-regular fa-user"></i>
+              <input type="text" id="cadNome" placeholder="Digite seu nome" required>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="cadEmail">Email</label>
+            <div class="input-wrapper">
+              <i class="fa-regular fa-envelope"></i>
+              <input type="email" id="cadEmail" placeholder="Digite seu email" required>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="cadSenha">Senha</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" id="cadSenha" placeholder="Digite sua senha" required>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="cadConfirmaSenha">Confirmar senha</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" id="cadConfirmaSenha" placeholder="Confirme sua senha" required>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="button" class="btn btn-secondary">Cancelar</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/login-cadastro.js"></script>
+</body>
+</html>
