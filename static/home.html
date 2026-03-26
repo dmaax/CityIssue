@@ -1,14 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>HOME</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - CityIssue</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
+
+  <nav class="navbar">
+    <div class="nav-brand">
+      <i class="fa-solid fa-layer-group"></i> CityIssue
+    </div>
+    <ul class="nav-links">
+      <li><a href="home.html" class="active">Home</a></li>
+      <li><a href="login-cadastro.html">Acesso</a></li>
+      <li><a href="#">Serviços</a></li>
+      <li><a href="#">Contato</a></li>
+    </ul>
+  </nav>
+
+  <main class="main-content home-content">
     
+    <section class="banner-hero hero-section">
+      <div class="banner-content-wrapper">
+        
+        <div class="banner-title-div">
+          <h1 class="hero-title">Sua voz faz o município melhor.</h1>
+        </div>
+        
+        <div class="banner-subtitle-div">
+          <p class="hero-subtitle">Viu um poste queimado, lixo acumulado, lombada sem pintura, árvore precisando de poda, buracos na via ou qualquer outro problema na sua cidade? Reporte de forma rápida e ajude a prefeitura a agir.</p>
+        </div>
+        
+        <div class="banner-btn-div">
+          <a href="login-cadastro.html" class="btn btn-primary hero-btn">Quero Reportar um Problema</a>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="features-section">
+      <h2 class="section-title">O que você pode reportar?</h2>
+      
+      <div class="features-grid">
+        
+        <div class="feature-card">
+          <i class="fa-solid fa-lightbulb feature-icon"></i>
+          <h3>Iluminação</h3>
+          <p>Postes apagados, lâmpadas queimadas ou piscando na sua rua.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fa-solid fa-road feature-icon"></i>
+          <h3>Sinalização</h3>
+          <p>Lombadas não pintadas, buracos na via ou placas caídas.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fa-solid fa-trash-can feature-icon"></i>
+          <h3>Limpeza Urbana</h3>
+          <p>Lixeiras públicas cheias e descarte irregular de entulhos.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fa-solid fa-tree feature-icon"></i>
+          <h3>Áreas Verdes</h3>
+          <p>Árvores com risco de queda, galhos em fios ou mato alto.</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
 </body>
 </html>

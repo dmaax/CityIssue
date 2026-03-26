@@ -6,8 +6,8 @@
 }
 /* ===== BIBLIOTECA (Design System) ===== */
 :root {
-  --primary-color: #6C63FF; /* <-- O ERRO ESTAVA AQUI! Agora está corrigido */
-  --primary-hover: #574fd6;
+  --primary-color: #00cc55; /* <-- O ERRO ESTAVA AQUI! Agora está corrigido */
+  --primary-hover: #00cc92;
   --background-color: #F4F6F9;
   --card-bg: #FFFFFF;
   --text-main: #2D3748;
@@ -182,7 +182,7 @@ h1 {
 
 .btn-primary {
   background: var(--primary-color);
-  color: #fff;
+  color: #000;
 }
 
 .btn-primary:hover {
