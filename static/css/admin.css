@@ -54,16 +54,18 @@ h1 { font-size: 28px; font-weight: 600; margin-bottom: 8px; }
 
 .chamados-table select {
   width: 100%;
-  padding: 8px 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
+  padding: 10px 14px;
+  border: 2px solid rgba(45, 55, 72, 0.15);
+  border-radius: 10px;
   font-size: 14px;
-  color: var(--text-main);
-  background: #fff;
+  color: #1a202c;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
-  background-image: linear-gradient(45deg, transparent 50%, var(--text-main) 50%), linear-gradient(135deg, var(--text-main) 50%, transparent 50%);
+  transition: all 0.25s ease;
+  box-shadow: inset 0 0 0 1px rgba(45, 55, 72, 0.08);
+  background-image: linear-gradient(45deg, transparent 50%, #2d3748 50%), linear-gradient(135deg, #2d3748 50%, transparent 50%);
   background-position: calc(100% - 20px) calc(50% - 4px), calc(100% - 14px) calc(50% - 4px);
   background-size: 5px 5px;
   background-repeat: no-repeat;
@@ -71,16 +73,125 @@ h1 { font-size: 28px; font-weight: 600; margin-bottom: 8px; }
 
 .chamados-table select:hover {
   border-color: var(--primary-color);
+  background: #f0fff9;
+  box-shadow: inset 0 0 0 1px rgba(0, 204, 85, 0.35);
 }
 
 .chamados-table select:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 204, 85, 0.2);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 204, 85, 0.25), inset 0 0 0 1px rgba(0, 204, 85, 0.35);
 }
 
 .chamados-table tr.selected-row {
   background: rgba(0, 204, 85, 0.12);
   border-left: 4px solid var(--primary-color);
+}
+
+.status-steps {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.status-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(113, 128, 150, 0.3);
+  border-radius: 999px;
+  background: #f8fafc;
+  padding: 6px 10px;
+  font-size: 12px;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.status-step:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 204, 85, 0.15);
+}
+
+.status-step.active {
+  border-color: var(--primary-color);
+  background: rgba(0, 204, 85, 0.13);
+  color: #0f766e;
+}
+
+.status-step .step-check {
+  font-weight: 700;
+  color: #047857;
+}
+
+.chamado-photo {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(113, 128, 150, 0.25);
+  cursor: zoom-in;
+}
+
+.image-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.image-modal.open {
+  display: flex;
+}
+
+.image-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.image-modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  margin: 0 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  background: #fff;
+}
+
+.image-modal-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.image-modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.photo-cell.no-photo {
+  color: var(--text-muted);
+  font-size: 12px;
+  text-align: center;
 }
 
 .btn-select {
