@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abrir Chamado - CityIssue</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/abrir-chamado.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-brand">
+      <i class="fa-solid fa-layer-group"></i> CityIssue
+    </div>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="login-cadastro.html">Acesso</a></li>
+      <li><a href="abrir-chamado.html" class="active">Abrir Chamado</a></li>
+      <li><a href="admin.html">Admin</a></li>
+
+    </ul>
+  </nav>
+
+  <main class="main-content">
+    <div class="container">      
+      <div class="card">        
+        <h1>Abrir Chamado</h1>
+        <p class="subtitle">Registre um problema na sua cidade</p>
+
+        <form id="formChamado">
+          <div class="input-group">
+            <label for="chamadoTitulo">Título do problema</label>
+            <input type="text" id="chamadoTitulo" placeholder="Ex: Buraco na rua, poste apagado" required>
+          </div>
+
+          <div class="input-group">
+            <label for="chamadoTipo">Tipo de problema</label>
+            <select id="chamadoTipo" required>
+              <option value="">Selecione o tipo</option>
+              <option value="iluminacao">Iluminação</option>
+              <option value="sinalizacao">Sinalização</option>
+              <option value="limpeza">Limpeza Urbana</option>
+              <option value="areas_verdes">Áreas Verdes</option>
+              <option value="agua">Água e Esgoto</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="chamadoDescricao">Descrição</label>
+            <textarea id="chamadoDescricao" rows="5" placeholder="Descreva o problema com detalhes" required></textarea>
+          </div>
+
+          <div class="input-group">
+            <label for="chamadoEndereco">Endereço</label>
+            <input type="text" id="chamadoEndereco" placeholder="Rua, número, bairro" required>
+          </div>
+
+
+          <div class="input-group">
+            <label for="chamadoFoto">Upload de foto</label>
+            <input type="file" id="chamadoFoto" accept="image/*">
+          </div>
+
+
+          <div class="button-group">
+            <button type="submit" class="btn btn-primary btn-block">Enviar Chamado</button>
+            <button type="reset" class="btn btn-secondary">Limpar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>CityIssue © 2026 - Fim da página</p>
+  </footer>
+
+</body>
+</html>

@@ -467,3 +467,18 @@ h1 {
     padding: 25px 20px;
   }
 }
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 16px 20px;
+  text-align: center;
+  font-size: 14px;
+  width: 100%;
+}
+
+.footer p {
+  margin: 0;
+}

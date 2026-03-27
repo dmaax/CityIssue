@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - CityIssue</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-brand">
+      <i class="fa-solid fa-layer-group"></i> CityIssue Admin
+    </div>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="login-cadastro.html">Acesso</a></li>
+      <li><a href="abrir-chamado.html">Abrir Chamado</a></li>
+      <li><a href="admin.html" class="active">Admin</a></li>
+    </ul>
+  </nav>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="card">
+        <h1>Painel Administrativo</h1>
+        <p class="subtitle">Visualize e responda os chamados enviados pelos usuários</p>
+
+        <div class="table-wrapper">
+          <table class="chamados-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Usuário</th>
+                <th>Tipo</th>
+                <th>Local</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- carregado pelo js -->
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer"><p>CityIssue © 2026 - Fim da página</p></footer>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
