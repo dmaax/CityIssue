@@ -92,14 +92,28 @@
     msgChamado.style.cssText = 'margin-top:12px;font-size:14px;display:none';
     formChamado.appendChild(msgChamado);
 
+    async function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload  = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
     formChamado.addEventListener('submit', async function (e) {
       e.preventDefault();
+      const fotoInput = document.getElementById('chamadoFoto');
+      let foto_url = null;
+      if (fotoInput.files && fotoInput.files[0]) {
+        try { foto_url = await fileToBase64(fotoInput.files[0]); } catch { foto_url = null; }
+      }
       const body = {
         titulo:    document.getElementById('chamadoTitulo').value.trim(),
         tipo:      document.getElementById('chamadoTipo').value,
         descricao: document.getElementById('chamadoDescricao').value.trim(),
         endereco:  document.getElementById('chamadoEndereco').value.trim(),
-        foto_url:  null,
+        foto_url,
       };
 
       try {

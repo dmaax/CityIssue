@@ -49,10 +49,10 @@ async function loadChamados() {
     const data = await res.json();
     if (data.success) renderChamados(data.data);
     else document.getElementById('tbodyChamados').innerHTML =
-      `<tr><td colspan="6" style="color:#e53e3e">${data.message}</td></tr>`;
+      `<tr><td colspan="7" style="color:#e53e3e">${data.message}</td></tr>`;
   } catch {
     document.getElementById('tbodyChamados').innerHTML =
-      '<tr><td colspan="6">Erro ao carregar chamados.</td></tr>';
+      '<tr><td colspan="7">Erro ao carregar chamados.</td></tr>';
   }
 }
 
@@ -64,10 +64,11 @@ const statusLabel = {
 };
 
 function renderChamados(items) {
+  _chamadosCache = items || [];
   const tbody = document.getElementById('tbodyChamados');
   tbody.innerHTML = '';
   if (!items || !items.length) {
-    tbody.innerHTML = '<tr><td colspan="6">Nenhum chamado encontrado.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="7">Nenhum chamado encontrado.</td></tr>';
     return;
   }
   items.forEach(c => {
@@ -77,6 +78,9 @@ function renderChamados(items) {
       <td>${c.user_nome}</td>
       <td>${c.tipo}</td>
       <td>${c.endereco}</td>
+      <td>${c.foto_url
+        ? `<img class="img-thumb" src="${c.foto_url}" alt="foto" onclick="openImageModal('${c.id}')">`
+        : '<span class="no-foto">Sem foto</span>'}</td>
       <td><span class="status-badge status-${c.status}">${statusLabel[c.status] || c.status}</span></td>
       <td class="actions-cell">
         <button class="btn-edit"   onclick="openEdit('${c.id}')">Editar</button>
@@ -84,6 +88,19 @@ function renderChamados(items) {
       </td>`;
     tbody.appendChild(tr);
   });
+}
+
+let _chamadosCache = [];
+
+function openImageModal(id) {
+  const c = _chamadosCache.find(x => x.id === id);
+  if (!c || !c.foto_url) return;
+  document.getElementById('imageModalImg').src = c.foto_url;
+  document.getElementById('imageModal').classList.add('open');
+}
+
+function closeImageModal() {
+  document.getElementById('imageModal').classList.remove('open');
 }
 
 async function deleteChamado(id) {

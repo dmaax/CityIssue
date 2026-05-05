@@ -34,6 +34,16 @@
                             cursor:pointer; font-family:inherit; font-size:14px; }
     .btn-save   { background:#00cc55; color:#fff; }
     .btn-cancel { background:#e2e8f0; }
+    /* Image modal */
+    .img-thumb { width:48px; height:36px; object-fit:cover; border-radius:4px;
+                 cursor:pointer; border:1px solid #e2e8f0; transition:opacity .2s; }
+    .img-thumb:hover { opacity:.8; }
+    .no-foto { font-size:12px; color:#a0aec0; }
+    .image-modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
+                           z-index:1100; justify-content:center; align-items:center; cursor:pointer; }
+    .image-modal-overlay.open { display:flex; }
+    .image-modal-overlay img { max-width:90vw; max-height:85vh; border-radius:8px;
+                                box-shadow:0 4px 24px rgba(0,0,0,.6); }
   </style>
 </head>
 <body>
@@ -69,7 +79,7 @@
               <thead>
                 <tr>
                   <th>ID</th><th>Usuário</th><th>Tipo</th>
-                  <th>Local</th><th>Status</th><th>Ações</th>
+                  <th>Local</th><th>Foto</th><th>Status</th><th>Ações</th>
                 </tr>
               </thead>
               <tbody id="tbodyChamados"></tbody>
@@ -131,6 +141,11 @@
         <button class="btn-cancel" id="btnCancelEdit">Cancelar</button>
       </div>
     </div>
+  </div>
+
+  <!-- Modal Visualizar Foto -->
+  <div class="image-modal-overlay" id="imageModal" onclick="closeImageModal()">
+    <img id="imageModalImg" src="" alt="Foto do chamado">
   </div>
 
   <footer class="footer"><p>CityIssue © 2026 - Fim da página</p></footer>
