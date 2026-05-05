@@ -6,10 +6,13 @@ const token = localStorage.getItem('token');
 const role  = localStorage.getItem('role');
 const nome  = localStorage.getItem('nome');
 
-// Verificar autenticacao
+// Verificar autenticacao e role admin
 if (!token) {
   alert('Acesso restrito. Faça login.');
   window.location.href = 'login-cadastro.html';
+} else if (role !== 'admin') {
+  alert('Acesso negado. Apenas administradores podem acessar este painel.');
+  window.location.href = 'home.html';
 }
 
 document.getElementById('adminWelcome').textContent =
