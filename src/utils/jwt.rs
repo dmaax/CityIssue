@@ -18,10 +18,10 @@ static JWT_SECRET: Lazy<String> = Lazy::new(|| {
 /// Claims do token JWT.
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Claims {
-    pub sub: String,   // user_id
+    pub sub: String, // user_id
     pub email: String,
     pub role: String,
-    pub exp: usize,    // timestamp de expiracao
+    pub exp: usize, // timestamp de expiracao
 }
 
 /// Gera token JWT com expiracao de 8 horas.

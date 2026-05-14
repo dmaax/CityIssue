@@ -10,7 +10,7 @@ pub struct User {
     pub id: String,
     pub nome: String,
     pub email: String,
-    #[serde(skip_serializing)]   // NUNCA serializar a senha hash na resposta
+    #[serde(skip_serializing)] // NUNCA serializar a senha hash na resposta
     pub senha_hash: String,
     pub role: String,
     pub criado_em: String,

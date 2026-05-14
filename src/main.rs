@@ -50,7 +50,10 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .app_data(data.clone())
             .app_data(web::JsonConfig::default().error_handler(|err, _req| {
-                let resp = utils::response::ApiResponse::<()>::error(400, &format!("JSON invalido: {err}"));
+                let resp = utils::response::ApiResponse::<()>::error(
+                    400,
+                    &format!("JSON invalido: {err}"),
+                );
                 actix_web::error::InternalError::from_response(err, resp).into()
             }))
             .wrap(cors)
@@ -103,4 +106,3 @@ async fn main() -> std::io::Result<()> {
     .run()
     .await
 }
-

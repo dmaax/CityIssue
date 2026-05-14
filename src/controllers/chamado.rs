@@ -27,7 +27,10 @@ fn extract_claims(req: &HttpRequest) -> Result<crate::utils::jwt::Claims, HttpRe
         .unwrap_or("");
 
     if !header.starts_with("Bearer ") {
-        return Err(ApiResponse::<()>::error(401, "Token de autenticacao ausente."));
+        return Err(ApiResponse::<()>::error(
+            401,
+            "Token de autenticacao ausente.",
+        ));
     }
 
     validate_token(&header[7..]).map_err(|e| ApiResponse::<()>::error(401, &e))
@@ -73,9 +76,7 @@ pub async fn create(
     let db = state.db.lock().unwrap();
 
     // Recuperar nome do usuario
-    let user = crate::repositories::user_repository::UserRepository::find_by_id(
-        &db, &claims.sub,
-    );
+    let user = crate::repositories::user_repository::UserRepository::find_by_id(&db, &claims.sub);
     let user_nome = user.map(|u| u.nome).unwrap_or_else(|| claims.email.clone());
 
     let now = Utc::now().to_rfc3339();

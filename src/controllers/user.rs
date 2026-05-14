@@ -22,7 +22,10 @@ fn require_admin(req: &HttpRequest) -> Result<(), HttpResponse> {
     let claims = validate_token(&header[7..]).map_err(|e| ApiResponse::<()>::error(401, &e))?;
 
     if claims.role != "admin" {
-        return Err(ApiResponse::<()>::error(403, "Acesso restrito a administradores."));
+        return Err(ApiResponse::<()>::error(
+            403,
+            "Acesso restrito a administradores.",
+        ));
     }
 
     Ok(())

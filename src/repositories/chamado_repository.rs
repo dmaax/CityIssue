@@ -18,9 +18,17 @@ impl ChamadoRepository {
                   status, user_id, user_nome, criado_em, atualizado_em)
                  VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)",
                 params![
-                    c.id, c.titulo, c.tipo, c.descricao, c.endereco,
-                    c.foto_url, c.status, c.user_id, c.user_nome,
-                    c.criado_em, c.atualizado_em,
+                    c.id,
+                    c.titulo,
+                    c.tipo,
+                    c.descricao,
+                    c.endereco,
+                    c.foto_url,
+                    c.status,
+                    c.user_id,
+                    c.user_nome,
+                    c.criado_em,
+                    c.atualizado_em,
                 ],
             )
             .map(|_| ())
@@ -62,8 +70,14 @@ impl ChamadoRepository {
                   foto_url=?5, status=?6, atualizado_em=?7
                  WHERE id = ?8",
                 params![
-                    c.titulo, c.tipo, c.descricao, c.endereco,
-                    c.foto_url, c.status, c.atualizado_em, id,
+                    c.titulo,
+                    c.tipo,
+                    c.descricao,
+                    c.endereco,
+                    c.foto_url,
+                    c.status,
+                    c.atualizado_em,
+                    id,
                 ],
             )
             .map(|_| ())

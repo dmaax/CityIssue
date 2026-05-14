@@ -64,8 +64,7 @@ pub async fn register(
     match UserRepository::create(&db, &user) {
         Ok(_) => {
             // Req. B3 — gerar JWT imediatamente apos cadastro
-            let token = generate_token(&user.id, &email, &user.role)
-                .unwrap_or_default();
+            let token = generate_token(&user.id, &email, &user.role).unwrap_or_default();
             ApiResponse::success(
                 "Cadastro realizado com sucesso!",
                 Some(AuthResponse {
