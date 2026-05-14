@@ -31,3 +31,17 @@ target
 # already existing elements were commented out
 
 #/target
+
+# Runtime / DB
+cityissue.db
+cityissue.db-shm
+cityissue.db-wal
+
+# Cargo local config
+.cargo/
+
+# Backups
+*.bak
+
+# Filled doc (generated)
+trabalho2_ra2_PREENCHIDO.docx

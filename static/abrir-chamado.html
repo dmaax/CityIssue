@@ -79,5 +79,68 @@
     <p>CityIssue © 2026 - Fim da página</p>
   </footer>
 
+  <script>
+    // Verificar autenticacao
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('Você precisa estar logado para abrir um chamado.');
+      window.location.href = 'login-cadastro.html';
+    }
+
+    const formChamado = document.getElementById('formChamado');
+    const msgChamado  = document.createElement('p');
+    msgChamado.style.cssText = 'margin-top:12px;font-size:14px;display:none';
+    formChamado.appendChild(msgChamado);
+
+    async function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload  = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    formChamado.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const fotoInput = document.getElementById('chamadoFoto');
+      let foto_url = null;
+      if (fotoInput.files && fotoInput.files[0]) {
+        try { foto_url = await fileToBase64(fotoInput.files[0]); } catch { foto_url = null; }
+      }
+      const body = {
+        titulo:    document.getElementById('chamadoTitulo').value.trim(),
+        tipo:      document.getElementById('chamadoTipo').value,
+        descricao: document.getElementById('chamadoDescricao').value.trim(),
+        endereco:  document.getElementById('chamadoEndereco').value.trim(),
+        foto_url,
+      };
+
+      try {
+        const res = await fetch('/api/chamados', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+          body: JSON.stringify(body),
+        });
+        const data = await res.json();
+        msgChamado.style.display = 'block';
+        if (data.success) {
+          msgChamado.style.color = '#00cc55';
+          msgChamado.textContent = 'Chamado enviado com sucesso! ID: ' + data.data.id;
+          formChamado.reset();
+        } else {
+          msgChamado.style.color = '#e53e3e';
+          msgChamado.textContent = data.message;
+        }
+      } catch (err) {
+        msgChamado.style.display = 'block';
+        msgChamado.style.color = '#e53e3e';
+        msgChamado.textContent = 'Erro de conexão com o servidor.';
+      }
+    });
+  </script>
 </body>
 </html>

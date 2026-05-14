@@ -8,6 +8,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/admin.css">
+  <style>
+    .tabs { display:flex; gap:12px; margin-bottom:20px; }
+    .tab-btn { padding:8px 20px; border:none; border-radius:6px; cursor:pointer;
+               background:#e2e8f0; font-family:inherit; font-size:14px; }
+    .tab-btn.active { background:var(--primary-color,#00cc55); color:#fff; }
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; }
+    .actions-cell button { margin:2px; padding:4px 10px; border:none; border-radius:4px;
+                           cursor:pointer; font-size:12px; font-family:inherit; }
+    .btn-edit   { background:#3182ce; color:#fff; }
+    .btn-delete { background:#e53e3e; color:#fff; }
+    .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.5);
+                     z-index:999; justify-content:center; align-items:center; }
+    .modal-overlay.open { display:flex; }
+    .modal-box { background:#fff; padding:28px; border-radius:10px; min-width:360px; max-width:500px; width:90%; }
+    .modal-box h2 { margin-bottom:16px; }
+    .modal-box .input-group { margin-bottom:12px; }
+    .modal-box label { display:block; font-size:13px; margin-bottom:4px; color:#718096; }
+    .modal-box input, .modal-box select, .modal-box textarea
+      { width:100%; padding:8px 10px; border:1px solid #e2e8f0; border-radius:6px;
+        font-family:inherit; font-size:14px; }
+    .modal-actions { display:flex; gap:10px; margin-top:16px; }
+    .modal-actions button { flex:1; padding:10px; border:none; border-radius:6px;
+                            cursor:pointer; font-family:inherit; font-size:14px; }
+    .btn-save   { background:#00cc55; color:#fff; }
+    .btn-cancel { background:#e2e8f0; }
+    /* Image modal */
+    .img-thumb { width:48px; height:36px; object-fit:cover; border-radius:4px;
+                 cursor:pointer; border:1px solid #e2e8f0; transition:opacity .2s; }
+    .img-thumb:hover { opacity:.8; }
+    .no-foto { font-size:12px; color:#a0aec0; }
+    .image-modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.85);
+                           z-index:1100; justify-content:center; align-items:center; cursor:pointer; }
+    .image-modal-overlay.open { display:flex; }
+    .image-modal-overlay img { max-width:90vw; max-height:85vh; border-radius:8px;
+                                box-shadow:0 4px 24px rgba(0,0,0,.6); }
+  </style>
 </head>
 <body>
 
@@ -20,6 +57,7 @@
       <li><a href="login-cadastro.html">Acesso</a></li>
       <li><a href="abrir-chamado.html">Abrir Chamado</a></li>
       <li><a href="admin.html" class="active">Admin</a></li>
+      <li><a href="#" id="logoutBtn" style="color:#e53e3e">Sair</a></li>
     </ul>
   </nav>
 
@@ -27,29 +65,88 @@
     <div class="container">
       <div class="card">
         <h1>Painel Administrativo</h1>
-        <p class="subtitle">Visualize e responda os chamados enviados pelos usuários</p>
+        <p class="subtitle" id="adminWelcome">Carregando...</p>
 
-        <div class="table-wrapper">
-          <table class="chamados-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Usuário</th>
-                <th>Tipo</th>
-                <th>Local</th>
-                <th>Foto</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- carregado pelo js -->
-            </tbody>
-          </table>
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="chamados">Chamados</button>
+          <button class="tab-btn" data-tab="usuarios">Usuários</button>
+        </div>
+
+        <!-- TAB CHAMADOS -->
+        <div id="tab-chamados" class="tab-panel active">
+          <div class="table-wrapper">
+            <table class="chamados-table">
+              <thead>
+                <tr>
+                  <th>ID</th><th>Usuário</th><th>Tipo</th>
+                  <th>Local</th><th>Foto</th><th>Status</th><th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyChamados"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB USUARIOS -->
+        <div id="tab-usuarios" class="tab-panel">
+          <div class="table-wrapper">
+            <table class="chamados-table">
+              <thead>
+                <tr><th>ID</th><th>Nome</th><th>Email</th><th>Role</th><th>Criado em</th><th>Ações</th></tr>
+              </thead>
+              <tbody id="tbodyUsers"></tbody>
+            </table>
+          </div>
         </div>
 
       </div>
     </div>
   </main>
+
+  <!-- Modal Editar Chamado -->
+  <div class="modal-overlay" id="modalEdit">
+    <div class="modal-box">
+      <h2>Editar Chamado</h2>
+      <input type="hidden" id="editId">
+      <div class="input-group">
+        <label>Título</label>
+        <input type="text" id="editTitulo">
+      </div>
+      <div class="input-group">
+        <label>Tipo</label>
+        <select id="editTipo">
+          <option value="iluminacao">Iluminação</option>
+          <option value="sinalizacao">Sinalização</option>
+          <option value="limpeza">Limpeza Urbana</option>
+          <option value="areas_verdes">Áreas Verdes</option>
+          <option value="agua">Água e Esgoto</option>
+          <option value="outro">Outro</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>Endereço</label>
+        <input type="text" id="editEndereco">
+      </div>
+      <div class="input-group">
+        <label>Status</label>
+        <select id="editStatus">
+          <option value="pending">Pendente</option>
+          <option value="in-progress">Em andamento</option>
+          <option value="done">Resolvido</option>
+          <option value="closed">Fechado</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-save" id="btnSaveEdit">Salvar</button>
+        <button class="btn-cancel" id="btnCancelEdit">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Visualizar Foto -->
+  <div class="image-modal-overlay" id="imageModal" onclick="closeImageModal()">
+    <img id="imageModalImg" src="" alt="Foto do chamado">
+  </div>
 
   <footer class="footer"><p>CityIssue © 2026 - Fim da página</p></footer>
 
